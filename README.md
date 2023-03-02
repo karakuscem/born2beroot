@@ -124,7 +124,6 @@ SSH istemcisi, bağlantı kurulum sürecini yürütür ve SSH sunucusunun kimli�
 
 Aşağıdaki şekil, güvenli bir kabuk bağlantısının basitleştirilmiş bir kurulum akışını göstermektedir.
 
-![140618919-8617389f-2f37-4b9b-8ec3-64fc6c3447e9.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/62bee92c-124b-4b94-a9b0-28f1769e12be/140618919-8617389f-2f37-4b9b-8ec3-64fc6c3447e9.png)
 
 Kullanımı `ssh {user}@{host} -p 4242` şeklindedir. user ulaşmak istediğiniz hesabı temsil eder. Host ise ulaşmak istediğiniz bilgisayarı simgeler. Bu bir IP (127.0.0.1) veya domain(www.xyzdomain.com) olabilir. Enter’a basıldığında istenilen hesaba erişmek için şifre girmeniz gerekecek. Şifreyi doğru girdiğinizde uzak terminal penceresiyle karşılaşacaksınız.
 
@@ -134,7 +133,6 @@ Varsayılan olarak, SSH sunucusu 22 numaralı bağlantı noktasında çalışır
 
 Port numarası /etc/ssh/sshd_config içerisindeki “Port 22” yönergesini düzenleyerek değiştirilebilir.
 
-![140950738-598cd9a4-b41a-4b9c-b68a-495bbb5278ea.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fd0ef506-c704-4ab6-98f6-4b4d53f8ab3e/140950738-598cd9a4-b41a-4b9c-b68a-495bbb5278ea.png)
 
 ```bash
 cd etc/ssh/
@@ -200,8 +198,6 @@ Port aralıkları da belirtilebilir, basit bir örnek şöyle olabilir:
 ```bash
 ufw allow 4242
 ```
-
-![140985819-9c52531b-e19a-4c36-9201-d8650fd6eecc.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe2da7e5-d486-46d5-84ef-30fb34580e79/140985819-9c52531b-e19a-4c36-9201-d8650fd6eecc.png)
 
 Kuralları numarasına göre de silebilirsiniz. Numaralandırılmış bir kural listesi göstermek için:
 
@@ -285,55 +281,11 @@ apt install libpam-pwquality (şifre kalite kontrol paketi)
 
 Parola Sona Erme için gün sayısını ayarlayın. Kullanıcıların şifrelerini gün içerisinde değiştirmeleri gerekmektedir. Bu ayar yalnızca bir kullanıcı oluşturulurken etkilenir, mevcut kullanıcıları etkilemez. Mevcut kullanıcılara uygulamak için, [chage -M (days) (user)] komutunu çalıştırın.
 
-![141210102-4f733765-1e8d-48bf-af75-c55893b3a10a.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a6a41e7-7fc1-4b63-a4f6-993bfe11bb92/141210102-4f733765-1e8d-48bf-af75-c55893b3a10a.png)
-
 ```bash
 vim /etc/login.defs (şifre politikası için bu dosyayı düzenleyin)
 ```
 
-![141209040-c9228ba5-eea4-4a1c-a38c-df445380e21a.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff037925-1dfe-4d7f-bc5f-6a7496de7209/141209040-c9228ba5-eea4-4a1c-a38c-df445380e21a.png)
-
 Parolanın kullanılabileceği minimum gün sayısını ayarlayın. Kullanıcılar şifrelerini değiştirdikten en az bu gün sonra kullanmalıdır. Bu ayar yalnızca bir kullanıcı oluşturulurken etkilenir, mevcut kullanıcıları etkilemez. Mevcut kullanıcılara ayarlamak için, [chage -m (days) (user)] komutunu çalıştırın.
-
-![141210381-aab429af-895d-4826-86c1-336036a74388.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/49e7ded2-e394-47ec-b47c-2b744afb17bb/141210381-aab429af-895d-4826-86c1-336036a74388.png)
-
-Minimum parola uzunluğunu ayarlayın. Kullanıcılar şifre uzunluklarını bu parametreden daha az ayarlayamazlar.
-
-```bash
-vim /etc/security/pwquality.conf (ayarlamak için bunu düzenleyin)
-```
-
-![141211611-18ebc508-b098-49a9-b8e1-ddb2a4b99e1a.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1c36f5af-0f54-4ada-b5c2-ab3c1bd27868/141211611-18ebc508-b098-49a9-b8e1-ddb2a4b99e1a.png)
-
-Yeni parolada en az bir büyük harf gerektir.
-
-![141305935-28eda24c-4621-4a2c-9148-ddfe10db8403.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b0aa14b-bfc7-4686-bbc0-3c554fa80194/141305935-28eda24c-4621-4a2c-9148-ddfe10db8403.png)
-
-Yeni parolada en az bir sayı olmasını zorunlu kılın.
-
-![141212018-43fb81a9-263b-46e1-8fe9-7ae65f7b1b5f.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d71ea8b5-7f0f-4efe-bf9a-b1d03f3d83d1/141212018-43fb81a9-263b-46e1-8fe9-7ae65f7b1b5f.png)
-
-Yeni parolada izin verilen maksimum ardışık aynı karakter sayısını ayarlayın.
-
-![141212139-b069388a-8d6b-4979-8ce1-46d36a2fe8a5.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/875ff956-9228-4378-8612-fe0d55b8aab4/141212139-b069388a-8d6b-4979-8ce1-46d36a2fe8a5.png)
-
-Kullanıcının passwd girişinin GECOS alanından 3 karakterden uzun kelimelerin yeni şifrede bulunup bulunmadığını kontrol edin.
-
-Gecos alanı, Unix ve benzeri işletim sistemlerindeki /etc/passwd dosyasındaki her kaydın alanıdır. UNIX'te, bir kayıttaki 7 alanın 5'idir. Genellikle hesap veya kullanıcıları hakkında gerçek adları ve telefon numaraları gibi genel bilgileri kaydetmek için kullanılır.
-
-![141298683-8cb025a5-8ea4-4284-ac5c-0800560e038a.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/de1d8da5-c8da-4d99-aa04-fb03dc255b49/141298683-8cb025a5-8ea4-4284-ac5c-0800560e038a.png)
-
-![141306286-0fba9b9b-770c-4222-bad7-1cd802fc8755.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b9da9a75-86df-4790-aae6-5092971c8c71/141306286-0fba9b9b-770c-4222-bad7-1cd802fc8755.png)
-
-Yeni parolada, eski parolada olmaması gereken karakter sayısını ayarlayın.
-
-![141301300-e5dd496b-9b07-42d4-8880-c37eed43a519.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/900def8d-cbec-4ae1-9b8a-e3d5a82fa680/141301300-e5dd496b-9b07-42d4-8880-c37eed43a519.png)
-
-Elbette root şifrenizin bu politikaya uygun olması gerekmektedir.
-
-![141306669-2d77c501-551e-4a15-b4e5-a82c0f33a581.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cb7250c3-2f1b-4169-98e8-8d94d44a14b5/141306669-2d77c501-551e-4a15-b4e5-a82c0f33a581.png)
-
-UYARI: Konfigürasyon dosyalarınızı kurduktan sonra, root hesabı da dahil olmak üzere sanal makine üzerinde bulunan tüm hesapların şifrelerini değiştirmeniz gerekecektir.
 
 # Şifre Nasıl Değiştirilir ?
 
@@ -407,10 +359,6 @@ useradd - yeni bir kullanıcı oluşturun veya varsayılan yeni kullanıcı bilg
 
 Sudoers ilkesi eklentisi, bir kullanıcının sudo ayrıcalıklarını belirler. Varsayılan sudo politikası eklentisidir. Politika, /etc/sudoers dosyası tarafından veya isteğe bağlı olarak LDAP'de yürütülür.
 
-![141489375-505810eb-4f68-4b32-9c1f-e5cf4cdfac7f.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f706044-e2bd-41ca-85f8-340536cf6585/141489375-505810eb-4f68-4b32-9c1f-e5cf4cdfac7f.png)
-
-![141491250-19d9abbe-ea60-46c2-b58b-caa18968a311.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/728ee45a-3ff1-4581-a889-24ebb32f04ac/141491250-19d9abbe-ea60-46c2-b58b-caa18968a311.png)
-
 # Visudo nedir ?
 
 visudo, sudoers dosyasını güvenli bir şekilde düzenler. visudo, sudoers dosyasını birden fazla eşzamanlı düzenlemeye karşı kilitler, temel kontrolleri sağlar ve ayrıştırma hatalarını kontrol eder. Sudoers dosyası şu anda düzenleniyorsa, daha sonra tekrar denemek için bir mesaj alacaksınız.
@@ -425,12 +373,8 @@ visudo, sudoers dosyasını güvenli bir şekilde düzenler. visudo, sudoers dos
 
 1. baddpass_message: Bir kullanıcı yanlış bir parola girerse görüntülenen mesaj. Varsayılan Üzgünüz, tekrar deneyin şeklindedir. hakaretler etkinleştirilmedikçe.
     
-    ![141497000-425bd100-8eea-4be2-9362-a109e90d0092.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/41627465-8357-4dbd-be10-9b6913b32e89/141497000-425bd100-8eea-4be2-9362-a109e90d0092.png)
-    
-
 *Sudo kullanan her eylem, hem girdiler hem de çıktılar olarak arşivlenmelidir. Günlük dosyası /var/log/sudo/ klasörüne kaydedilmelidir.*
 
-![143683138-5ee3bc66-1175-43d2-bdc5-77de5b46e3a8.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f17e5d80-3ccd-451e-9b93-30170fa980ae/143683138-5ee3bc66-1175-43d2-bdc5-77de5b46e3a8.png)
 
 *Güvenlik nedeniyle TTY modu etkinleştirilmelidir.*
 
@@ -443,10 +387,6 @@ Bu, belirli türdeki yükseltme saldırılarını önleyebilir. Örneğin, NOPAS
 ...kolayca. Bu kısıtlamayı aşmak özellikle zor değildir ve bu nedenle, bozduğu geçerli kullanım durumlarıyla karşılaştırıldığında genellikle o kadar da yararlı değildir. Red Hat bunu kullanırdı, ancak birkaç yıl önce kaldırdı.
 
 *Güvenlik nedeniyle de sudo tarafından kullanılabilecek yollar kısıtlanmalıdır. Örnek: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin*
-
-***Dosyanın son şekli bu şekilde olmalıdır***
-
-![x.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ca459620-531d-48b9-b2fc-ee1ae2b391c2/x.png)
 
 # Script nedir ?
 
@@ -599,7 +539,6 @@ Crontab'ın her 10 dakikada bir görev çalıştırmasını sağlamak için aşa
 
 /10, aralıklarla birlikte kullanılır. Örneğin, her saat başı komut yürütmeyi belirtmek için saat alanında 0-23/2 kullanılabilir. Yıldız işaretinden sonra adımlara da izin verilir, bu nedenle her iki saatte bir demek istiyorsanız */2 kullanın. Bu örnekte, her 10 dakikada bir komut yürütülmesini belirtmek için dakika alanında */10.
 
-![144088241-0a2c0131-d4d0-40fd-9d8f-a5061c1bb259.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d5eb9420-ca53-4e0b-a200-ade31694b071/144088241-0a2c0131-d4d0-40fd-9d8f-a5061c1bb259.png)
 
 # Komut dosyasını değiştirmeden nasıl kesilir?
 
